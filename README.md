@@ -84,7 +84,7 @@ If you want to be as close as production to that, you may switch to Nginx by usi
 ## Compiling and building images on M1 Macbooks
 Rancher desktop is using a virtual machine with an emulated amd64 processor running a Linux OS. You can even access that VM using `rdctl shell`. 
 
-Now, when you are compiling something, by default the compiler will target your processor and OS. For example, `go guild main.go` will produce a binary which you can run on your M1 Macbook but if you try to put it inside a container image and run it you will get an `exec format error`.
+Now, when you are compiling something, by default the compiler will target your processor and OS. For example, `go build main.go` will produce a binary which you can run on your M1 Macbook but if you try to put it inside a container image and run it you will get an `exec format error`.
 
 For the go language, you will need to compile with something like `GOOS=linux GOARCH=amd64 go build main.go`. Those two environment variables will tell go compiler which is the target architecture and operating system.
 
