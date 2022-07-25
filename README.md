@@ -37,7 +37,10 @@ docker ps
 kubectl get nodes
 ```
 
-If those works you're all set. You may close the Rancher desktop main window and if needed access it from the small icon in the taskbar.
+If those works you're all set. You may close the Rancher desktop main window and if needed access it from the small icon in the taskbar:
+
+![taskbar icon](screenshot1.png?raw=true "taskbar icon")
+
 
 ## Not working on newer Apple macbooks - PATH problems
 
