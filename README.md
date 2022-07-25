@@ -30,6 +30,8 @@ Then start Rancher desktop, search it in your graphical menu system.
 
 On first start, you will be presented with some choices. Most of the defaults are ok, except at "Container runtime" where we recommend selecting the option **"dockerd (moby)"** instead of "containerd". This way you will be able to use familliar docker commands.
 
+![preferences](screenshot2.png?raw=true "preferences")
+
 Wait until the progress bar in the left-down side is finishing. Then **start a NEW shell** and try
 
 ```
