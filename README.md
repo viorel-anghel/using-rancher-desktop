@@ -72,25 +72,9 @@ kubectl run dummy --image=dummy:0.7   # start a new dummy pod from this image
 kubectl get pods
 ```
 
-Of course, if you want to push images to a remote registry, you will need to `docker tag ... ; docker push ...`.
+### Building images on M1 Macbooks
 
-
-
-### Nginx vs. Traefik ingress controller
-
-Rancher desktop uses Traefik as the default ingress controller in this local Kubernetes. On our prod/dev clusters we 
-use Nginx. 
-
-If you want to be as close as production to that, you may switch to Nginx by using this info https://docs.rancherdesktop.io/how-to-guides/setup-NGINX-Ingress-Controller . At step 1  you will need to exit and restart Rancher desktop.
-
-## Compiling and building images on M1 Macbooks
-Rancher desktop is using a virtual machine with an emulated amd64 processor running a Linux OS. You can even access that VM using `rdctl shell`. 
-
-Now, when you are compiling something, by default the compiler will target your processor and OS. For example, `go build main.go` will produce a binary which you can run on your M1 Macbook but if you try to put it inside a container image and run it you will get an `exec format error`.
-
-For the go language, you will need to compile with something like `GOOS=linux GOARCH=amd64 go build main.go`. Those two environment variables will tell go compiler which is the target architecture and operating system.
-
-For building docker images, you have the same problem. You can build your images and run them on your laptop. But if you try to push them to Docker Hub you will notice, on Docker hub webinterface, the image is built for arm64 architecture. For long explanation an d solution, read more on https://blog.jaimyn.dev/how-to-build-multi-architecture-docker-images-on-an-m1-mac/
+As shown above, you can `docker build` images and run them on your laptop. But if you try to push them to Docker Hub you will notice, on Docker hub webinterface, the image is built for the arm64 architecture. For long explanation and solution, read more on https://blog.jaimyn.dev/how-to-build-multi-architecture-docker-images-on-an-m1-mac/
 
 This is an example on how I do it for my dummy image:
 ```
@@ -106,6 +90,18 @@ If you look now at the Docker hub webinterface you will see the new image is mul
 
 Docker and Kubernetes will auto-select the right architecture when pulling the image.
 
+### Compiling Go programs on M1 Macbooks
 
+When you are compiling GO programs, by default the compiler will target your processor and OS. For example, `go build main.go` will produce a binary which you can run on your M1 Macbook.
+
+If you try to run this on another architecture you will get an `exec format error`.
+
+For the go language, you will need to compile with something like `GOOS=linux GOARCH=amd64 go build main.go`. Those two environment variables will tell go compiler which is the target architecture and operating system.
+
+### Nginx vs. Traefik ingress controller
+
+Rancher desktop uses Traefik as the default ingress controller in this local Kubernetes. On our prod/dev clusters we use Nginx. 
+
+If you want to be as close as production to that, you may switch to Nginx by using this info https://docs.rancherdesktop.io/how-to-guides/setup-NGINX-Ingress-Controller . At step 1  you will need to exit and restart Rancher desktop.
 
 
