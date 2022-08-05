@@ -56,8 +56,6 @@ export PATH="/Users/vang/.rd/bin:$PATH"
 
 because it installs all it's binaries in that `.rd/bin` directory. But on newer Macs, `zsh` is the default shell instead of `bash` so you will need to copy those lines from `~/.bashrc` in a file called `~/.zshrc`.
 
-
-
 ## Using Rancher desktop
 
 ### Building images and using them in kubernetes
@@ -74,7 +72,7 @@ kubectl get pods
 
 ### Building images on M1 Macbooks
 
-As shown above, you can `docker build` images and run them on your laptop. But if you try to push them to Docker Hub you will notice, on Docker hub webinterface, the image is built for the arm64 architecture. For long explanation and solution, read more on https://blog.jaimyn.dev/how-to-build-multi-architecture-docker-images-on-an-m1-mac/
+As shown above, you can `docker build` images and run them on your laptop. But if you try to push them to Docker Hub you will notice, on Docker hub webinterface, the image is built for the arm64 architecture. You will frequently have Kubernetes clusters with amd64 / x86 architecture so you need the docker image to be on that arch. Fortunately, there is a way to build images multi-architecture. Read more on https://blog.jaimyn.dev/how-to-build-multi-architecture-docker-images-on-an-m1-mac/
 
 This is an example on how I do it for my dummy image:
 ```
